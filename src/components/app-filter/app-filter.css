@@ -9,6 +9,7 @@
 
 .btn {
   display: inline-block;
+  cursor: pointer;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
