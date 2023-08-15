@@ -12,7 +12,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       store: [
         { name: "Herrington Billy", salary: 500, increase: false, id: 1 },
@@ -26,9 +26,21 @@ class App extends Component {
     this.setState(({ store }) => {
 
       return {
-        store: store.filter( item => item.id !== id)
+        store: store.filter(item => item.id !== id)
       }
     })
+  }
+
+  onCreate = () => {
+    const newEmployee = {
+      name: this.state.name,
+      salary: this.state.salary,
+      increase: false,
+      id: this.state.store.length + 1 // Просто зробимо id на основі довжини масиву + 1
+    };
+    this.setState(prevState => ({
+      store: [...prevState.store, newEmployee]
+    }));
   }
 
   render() {
@@ -41,7 +53,7 @@ class App extends Component {
           <AppFilter />
         </div>
         <EmployeesList store={this.state.store} onDelete={this.onDelete} />
-        <EmployeesAddForm />
+        <EmployeesAddForm onCreate={this.onCreate} />
       </div>
     )
   }
