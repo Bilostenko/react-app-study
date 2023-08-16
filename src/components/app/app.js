@@ -32,10 +32,15 @@ class App extends Component {
   }
 
   onAdd = (name, salary) => {
-
     if (name !== '' && salary !== '') {
-      let newEmployee = { name, salary, increase: false, id: this.state.store.length + 1 }
-      console.log(newEmployee)
+
+      let newEmployee = { 
+        name, 
+        salary, 
+        rise: false,
+        increase: false, 
+        id: this.state.store.length + 1 }
+      
       this.setState(({ store }) => {
         let updatedStore = [...store, newEmployee]
         return {
@@ -43,6 +48,24 @@ class App extends Component {
         }
       })
     }
+  }
+
+  onToggleIncrease = (id) =>{
+    this.setState(({store})=>{
+      const index  = store.findIndex(item=> item.id === id)
+
+      const old = store[index]
+      const newItem = {...old, increase:!old.increase}
+      const newArr = [...store.slice(0, index), newItem, ...store.slice(index+1)]
+    
+      return{
+        store: newArr
+      }
+    })
+  }
+
+  onToggleRise = (id) =>{
+    console.log(`Rise this ${id}`)
   }
 
   render() {
@@ -54,7 +77,7 @@ class App extends Component {
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeesList store={this.state.store} onDelete={this.onDelete} />
+        <EmployeesList store={this.state.store} onDelete={this.onDelete} onToggleIncrease={this.onToggleIncrease} onToggleRise={this.onToggleRise}/>
         <EmployeesAddForm onAdd={this.onAdd} />
       </div>
     )

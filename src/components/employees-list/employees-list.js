@@ -2,10 +2,7 @@ import EmployeesListItem from "../employees-list-item/employees-list-item"
 import "./employees-list.css"
 
 
-// this.myUniqueId = generateId();
-
-
-const EmployeesList = ({store, onDelete}) => {
+const EmployeesList = ({store, onDelete, onToggleIncrease, onToggleRise}) => {
 
   const elements = store.map(item => {
     return (
@@ -14,7 +11,9 @@ const EmployeesList = ({store, onDelete}) => {
     salary={item.salary} 
     increase={item.increase} 
     key={item.id}
-    onDelete={()=>onDelete(item.id)}/>
+    onDelete={()=>onDelete(item.id)}
+    onToggleRise={()=>onToggleRise(item.id)}
+    onToggleIncrease={()=>onToggleIncrease(item.id)}/>
     )
   })
 
