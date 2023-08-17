@@ -15,9 +15,9 @@ class App extends Component {
 
     this.state = {
       store: [
-        { name: "Herrington Billy", salary: 500, increase: false, id: 1 },
-        { name: "Danny Lee", salary: 1000, increase: false, id: 2 },
-        { name: "Anthony Capriati", salary: 1500, increase: false, id: 3 }
+        { name: "Herrington Billy", salary: 500, increase: false, rise: false, id: 1 },
+        { name: "Danny Lee", salary: 1000, increase: false, rise: false, id: 2 },
+        { name: "Anthony Capriati", salary: 1500, increase: false, rise: false, id: 3 }
       ]
     }
   }
@@ -50,12 +50,12 @@ class App extends Component {
     }
   }
 
-  onToggleIncrease = (id) =>{
+  onToggleProp = (id, prop) =>{
     this.setState(({store})=>{
       const index  = store.findIndex(item=> item.id === id)
 
       const old = store[index]
-      const newItem = {...old, increase:!old.increase}
+      const newItem = {...old, [prop]:!old[prop]}
       const newArr = [...store.slice(0, index), newItem, ...store.slice(index+1)]
     
       return{
@@ -64,20 +64,19 @@ class App extends Component {
     })
   }
 
-  onToggleRise = (id) =>{
-    console.log(`Rise this ${id}`)
-  }
-
   render() {
+    let totalNumEmployees = this.state.store.length
+    let totalNumBenefitEmployees = this.state.store.reduce((count, item) => item.increase ? count + 1 : count, 0);
+
     return (
       <div className="app">
-        <AppInfo />
+        <AppInfo totalNumEmployees={totalNumEmployees} totalNumBenefitEmployees={totalNumBenefitEmployees}/>
 
         <div className="search-panel">
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeesList store={this.state.store} onDelete={this.onDelete} onToggleIncrease={this.onToggleIncrease} onToggleRise={this.onToggleRise}/>
+        <EmployeesList store={this.state.store} onDelete={this.onDelete} onToggleProp={this.onToggleProp}/>
         <EmployeesAddForm onAdd={this.onAdd} />
       </div>
     )
