@@ -18,7 +18,8 @@ class App extends Component {
         { name: "Herrington Billy", salary: 500, increase: false, rise: false, id: 1 },
         { name: "Danny Lee", salary: 1000, increase: false, rise: false, id: 2 },
         { name: "Anthony Capriati", salary: 1500, increase: false, rise: false, id: 3 }
-      ]
+      ],
+      term: ''
     }
   }
 
@@ -34,13 +35,14 @@ class App extends Component {
   onAdd = (name, salary) => {
     if (name !== '' && salary !== '') {
 
-      let newEmployee = { 
-        name, 
-        salary, 
+      let newEmployee = {
+        name,
+        salary,
         rise: false,
-        increase: false, 
-        id: this.state.store.length + 1 }
-      
+        increase: false,
+        id: this.state.store.length + 1
+      }
+
       this.setState(({ store }) => {
         let updatedStore = [...store, newEmployee]
         return {
@@ -50,33 +52,50 @@ class App extends Component {
     }
   }
 
-  onToggleProp = (id, prop) =>{
-    this.setState(({store})=>{
-      const index  = store.findIndex(item=> item.id === id)
+  onToggleProp = (id, prop) => {
+    this.setState(({ store }) => {
+      const index = store.findIndex(item => item.id === id)
 
       const old = store[index]
-      const newItem = {...old, [prop]:!old[prop]}
-      const newArr = [...store.slice(0, index), newItem, ...store.slice(index+1)]
-    
-      return{
+      const newItem = { ...old, [prop]: !old[prop] }
+      const newArr = [...store.slice(0, index), newItem, ...store.slice(index + 1)]
+
+      return {
         store: newArr
       }
     })
   }
 
+  searchEmp = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+
+    return items.filter(item => {
+      return item.name.indexOf(term) > -1
+    })
+  }
+
+  onUpdateSearch = (term) => {
+    this.setState({
+      term: term
+    })
+  }
+
   render() {
+    const { store, term } = this.state
     let totalNumEmployees = this.state.store.length
     let totalNumBenefitEmployees = this.state.store.reduce((count, item) => item.increase ? count + 1 : count, 0);
+    const visibleData = this.searchEmp(store, term)
 
     return (
       <div className="app">
-        <AppInfo totalNumEmployees={totalNumEmployees} totalNumBenefitEmployees={totalNumBenefitEmployees}/>
-
+        <AppInfo totalNumEmployees={totalNumEmployees} totalNumBenefitEmployees={totalNumBenefitEmployees} />
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
-        <EmployeesList store={this.state.store} onDelete={this.onDelete} onToggleProp={this.onToggleProp}/>
+        <EmployeesList store={visibleData} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
         <EmployeesAddForm onAdd={this.onAdd} />
       </div>
     )
