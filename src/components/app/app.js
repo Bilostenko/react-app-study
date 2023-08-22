@@ -19,7 +19,8 @@ class App extends Component {
         { name: "Danny Lee", salary: 1000, increase: false, rise: false, id: 2 },
         { name: "Anthony Capriati", salary: 1500, increase: false, rise: false, id: 3 }
       ],
-      term: ''
+      term: '',
+      filter: 'all'
     }
   }
 
@@ -82,18 +83,26 @@ class App extends Component {
     })
   }
 
+  filterPost = (items, filter) => {
+    switch (filter) {
+      case 'rise': return items.filter(item => item.rise);
+      case 'moreThan1000': return items.filter(item=>item.salary > 1000);
+      default: return items
+    }
+  }
+
   render() {
-    const { store, term } = this.state
+    const { store, term, filter } = this.state
     let totalNumEmployees = this.state.store.length
     let totalNumBenefitEmployees = this.state.store.reduce((count, item) => item.increase ? count + 1 : count, 0);
-    const visibleData = this.searchEmp(store, term)
+     const visibleData = this.filterPost(this.searchEmp(store, term), filter);
 
     return (
       <div className="app">
         <AppInfo totalNumEmployees={totalNumEmployees} totalNumBenefitEmployees={totalNumBenefitEmployees} />
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <AppFilter />
+          <AppFilter filter={filter}/>
         </div>
         <EmployeesList store={visibleData} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
         <EmployeesAddForm onAdd={this.onAdd} />
