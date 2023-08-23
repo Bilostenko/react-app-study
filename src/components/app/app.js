@@ -91,6 +91,12 @@ class App extends Component {
     }
   }
 
+  onFilterSelect = (filter)=>{
+    this.setState({
+      filter : filter
+    })
+  }
+
   render() {
     const { store, term, filter } = this.state
     let totalNumEmployees = this.state.store.length
@@ -102,7 +108,7 @@ class App extends Component {
         <AppInfo totalNumEmployees={totalNumEmployees} totalNumBenefitEmployees={totalNumBenefitEmployees} />
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <AppFilter filter={filter}/>
+          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
         </div>
         <EmployeesList store={visibleData} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
         <EmployeesAddForm onAdd={this.onAdd} />

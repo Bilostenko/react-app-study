@@ -12,7 +12,11 @@ const AppFilter = (props) => {
     const active = props.filter === name
     const clazz = active ? "btn-light" : "btn-outline-light"
 
-    return (<button className={`btn ${clazz}`} key={name}>{label}</button>)
+    return (<button className={`btn ${clazz}`}
+                    key={name}
+                    onClick={()=>props.onFilterSelect(name)} >
+                      {label}
+            </button>)
   })
 
   return (
