@@ -97,6 +97,22 @@ class App extends Component {
     })
   }
 
+  onUpdateInputPrice = (name, newSalary) => {
+    this.setState(prevState => {
+      const updatedStore = prevState.store.map(item => {
+        if (item.name === name) {
+          return { ...item, salary: newSalary };
+        }
+        return item;
+      });
+  
+      return {
+        store: updatedStore
+      };
+    });
+  }
+  
+
   render() {
     const { store, term, filter } = this.state
     let totalNumEmployees = this.state.store.length
@@ -110,7 +126,11 @@ class App extends Component {
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
         </div>
-        <EmployeesList store={visibleData} onDelete={this.onDelete} onToggleProp={this.onToggleProp} />
+        <EmployeesList 
+        store={visibleData} 
+        onDelete={this.onDelete} 
+        onToggleProp={this.onToggleProp} 
+        onUpdateInputPrice={this.onUpdateInputPrice}/>
         <EmployeesAddForm onAdd={this.onAdd} />
       </div>
     )
