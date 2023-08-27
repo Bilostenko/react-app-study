@@ -1,3 +1,5 @@
+![Interface](https://github.com/Bilostenko/react-app-study/blob/ebf4e4c01b4a8bcd245bee4853b71a788816244b/photo_2023-08-27_14-08-30.jpg)
+
 # Employee List Management
 
 ## Description
