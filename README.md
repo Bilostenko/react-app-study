@@ -1,37 +1,37 @@
-# Управління формою списку співробітників
+# Employee List Management
 
-## Опис
+## Description
 
-Цей проект призначений для демонстрації практичного використання управління станом React компонентів через код.
+This project is intended to demonstrate practical usage of state management in React components through code.
 
-## Огляд
+## Overview
 
-Цей веб-додаток надає можливість керування списком співробітників компанії. Основні можливості:
+This web application provides the ability to manage a company's list of employees. Key features include:
 
-- Додавання нового співробітника до списку з вказанням імені та зарплати.
-- Видалення співробітника зі списку.
-- Позначення співробітника для "welcome bonus".
-- Позначення співробітника для підвищення.
-- Фільтрація списку співробітників за різними критеріями.
-- Пошук співробітника за ім'ям.
+- Adding a new employee to the list with a specified name and salary.
+- Removing an employee from the list.
+- Marking an employee for a "welcome bonus."
+- Marking an employee for promotion.
+- Filtering the list of employees based on various criteria.
+- Searching for employees by name.
 
-## Основні особливості
+## Key Features
 
-- **Додавання нового співробітника:** Заповніть поля в низу додатку для додавання нового співробітника до списку.
-- **Видалення співробітника:** Клікніть на іконку смітника біля співробітника, якого бажаєте видалити.
-- **"Welcome bonus":** Клікніть на іконку печива, щоб включити співробітника до списку "welcome bonus".
-- **Підвищення:** Позначте співробітника зіркою для майбутнього підвищення.
-- **Фільтрація та пошук:** Використовуйте фільтри та поле пошуку для швидкого знаходження потрібних співробітників.
+- **Add New Employee:** Fill in the fields at the bottom of the application to add a new employee to the list.
+- **Remove Employee:** Click on the trash icon next to the employee you want to remove.
+- **"Welcome Bonus":** Click on the cookie icon to include an employee in the "welcome bonus" list.
+- **Promotion:** Mark an employee with a star for future promotion consideration.
+- **Filtering and Searching:** Utilize filters and the search field to quickly find the desired employees.
 
-## Встановлення та запуск
+## Installation and Running
 
-Для запуску додатку виконайте наступні кроки:
+To run the application, follow these steps:
 
-1. Клонуйте репозиторій: `git clone https://github.com/ваш-лінк-сюди.git`
-2. Встановіть залежності: `npm install`
-3. Запустіть додаток: `npm start`
+1. Clone the repository: `git clone https://github.com/your-link-here.git`
+2. Install dependencies: `npm install`
+3. Start the application: `npm start`
 
-## Ліцензія
+## License
 
-Цей проект ліцензовано відповідно до умов [назва ліцензії]. Докладні відомості можна знайти у файлі [LICENSE](ваш-шлях-до-файлу).
+This project is licensed under the [license name]. For more details, please refer to the [LICENSE](your-path-to-file) file.
 
